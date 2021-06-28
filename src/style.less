@@ -1,6 +1,8 @@
-.App {
+#root {
   background-color: #f1f6fb;
   height: 100vh;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 .operation-form {
   background-color: #e0002c;
@@ -10,6 +12,7 @@
   padding: 10px;
   border-radius: 10px;
 }
+
 .operation-page {
   background-color: #f1f6fb;
   height: 100vh;
@@ -17,14 +20,7 @@
   justify-content: center;
   margin-top: 10px;
 }
-input {
-  width: 200px;
-  height: 30px;
-  margin: 10px;
-  background-color: #f1f6fb;
-  border: 1px solid #f1f6fb;
-  border-radius: 2px;
-}
+
 .header {
   background-color: #f1f6fb;
   display: grid;
@@ -38,47 +34,55 @@ input {
   align-items: center;
   text-decoration: none;
 }
+
+.header-element:hover {
+  background-color: #e0002c;
+  cursor: pointer;
+  color: white;
+}
 .transaction {
   border: 1px solid black;
   width: 60%;
   position: relative;
   margin: 10px;
   padding: 10px;
-  border-radius: 10px;
-}
-.header-element:hover {
-  background-color: #e0002c;
-  cursor: pointer;
-  color: white;
+  height: max-content;
 }
 .logo-img {
   width: 40px;
   height: 40px;
   margin-left: 10px;
 }
-.amount {
+.amountWithdraw {
   right: 0;
   position: absolute;
+  color: red;
 }
-.delete-btn {
-  font-size: 2px;
+.amountDeposit {
+  right: 0;
+  position: absolute;
+  color: green;
 }
 button {
   margin: 3px;
   background-color: #f1f6fb;
 }
-@media only screen and (max-width: 600px) {
-  /* body {
-      background-color: lightblue;
-    }
-    .header {
-      background-color: #F1F6FB;
-      display: grid;
-      grid-template-columns: 1fr;
-      border-bottom: 1px solid black;
-    } */
+
+input {
+  width: 200px;
+  height: 30px;
+  margin: 10px;
+  background-color: #f1f6fb;
+  border: 1px solid #f1f6fb;
+  border-radius: 2px;
 }
 
-/* display: flex;
-  justify-content: center;
-  align-items: center; */
+.delete-btn {
+  border-radius: 2px;
+  background-color: #e0002c;
+  color: white;
+}
+.delete-underline-link {
+  text-decoration: none;
+  color: black;
+}
