@@ -5,7 +5,7 @@ export default class WelcomePage extends Component {
     return (
       <div className="welcomepage">
         <div className="block">
-          <div className="welcome-header">Welcome to Bank</div>
+          <div className="welcomeHeader">Welcome to Bank</div>
           <div>
             <p className="welcomePageParagraph">
               Thank you so much for allowing us to help you with your recent
