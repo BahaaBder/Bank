@@ -1,31 +1,40 @@
-#root {
-  background-color: #f1f6fb;
-  height: 100vh;
+body {
+  background-image: url("../images/bankTeam.jpg");
   font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
-.operation-form {
-  background-color: #e0002c;
+.error {
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px black;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: red;
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 3px;
+  border-radius: 2px;
+}
+.operationForm {
+  background: rgba(224, 0, 44, 0.7);
   display: inline-block;
   height: max-content;
   width: max-content;
   padding: 10px;
   border-radius: 10px;
+  margin-top: 64px;
 }
-
-.operation-page {
-  background-color: #f1f6fb;
+.operationPage {
   height: 100vh;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
-
 .header {
-  background-color: #f1f6fb;
+  background: rgba(241, 246, 251, 0.5);
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   border-bottom: 1px solid black;
+  font-family: "Roboto", sans-serif;
 }
 .header-element {
   margin-left: 10px;
@@ -33,41 +42,21 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  font-size: 20px;
 }
-
 .header-element:hover {
-  background-color: #e0002c;
   cursor: pointer;
-  color: white;
-}
-.transaction {
-  border: 1px solid black;
-  width: 60%;
-  position: relative;
-  margin: 10px;
-  padding: 10px;
-  height: max-content;
+  border-bottom: 3px solid red;
 }
 .logo-img {
   width: 40px;
   height: 40px;
   margin-left: 10px;
 }
-.amountWithdraw {
-  right: 0;
-  position: absolute;
-  color: red;
-}
-.amountDeposit {
-  right: 0;
-  position: absolute;
-  color: green;
-}
 button {
   margin: 3px;
   background-color: #f1f6fb;
 }
-
 input {
   width: 200px;
   height: 30px;
@@ -76,13 +65,24 @@ input {
   border: 1px solid #f1f6fb;
   border-radius: 2px;
 }
-
-.delete-btn {
-  border-radius: 2px;
-  background-color: #e0002c;
-  color: white;
-}
-.delete-underline-link {
+.deleteUnderlineLink {
   text-decoration: none;
   color: black;
+}
+.balanceGreen {
+  color: green;
+}
+.balanceRed {
+  color: Red;
+}
+.balance,
+.balanceGreen,
+.balanceRed {
+  margin-top: 13px;
+  margin-left: 10px;
+  font-size: x-large;
+}
+.transactions {
+  overflow-y: scroll;
+  height: 346px;
 }

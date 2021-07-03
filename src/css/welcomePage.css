@@ -1,0 +1,25 @@
+.block {
+  width: 50%;
+  height: 250px;
+  background: rgba(251, 246, 241, 0.8);
+  border-radius: 20%;
+  border: 1px solid black;
+  margin-top: 60px;
+  padding: 10px;
+}
+.welcomepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  letter-spacing: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.welcome-header {
+  color: red;
+  margin-left: 120px;
+}
+.welcomePageParagraph {
+  font-size: 13px;
+  font-family: cursive;
+}

@@ -1,82 +1,115 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
 export default class Operations extends Component {
   constructor() {
     super();
     this.state = {
-      operation: { amount: "", vendor: "", category: "" },
+      operation: { amount: 0, vendor: "", category: "" },
     };
+    this.errorMessage = "";
   }
-  // Alert(props) {
-  //   return <MuiAlert elevation={6} variant="filled" {...props} />;
-  // }
-  updateAmount = (event) => {
-    let operation = { ...this.state.operation };
-    operation.amount = event.target.value;
-    this.setState({ operation });
-  };
-  updateVendor = (event) => {
-    let operation = { ...this.state.operation };
-    operation.vendor = event.target.value;
-    this.setState({ operation });
-  };
-  updateCategory = (event) => {
-    let operation = { ...this.state.operation };
-    operation.category = event.target.value;
-    this.setState({ operation });
-  };
-  updateOperation = () => {
-    this.props.updateOperation(this.state.operation);
-  };
-  saveDeposit = async () => {
-    await axios.post("http://localhost:8080/transaction", this.state.operation);
+
+  handleChange = (event) => {
+    this.setState({
+      operation: {
+        ...this.state.operation,
+        [event.target.name]:
+          event.target.name == "amount"
+            ? parseInt(event.target.value)
+            : event.target.value,
+      },
+    });
   };
 
-  saveWithdraw = async () => {
-    let operation = { ...this.state.operation };
-    operation.amount = parseInt(operation.amount) * -1;
-    // await this.setState({ operation });
-    //console.log(this.state.operation);
-    await axios.post("http://localhost:8080/transaction", operation);
+  isValidUserInputs = (operation) => {
+    if (
+      operation.amount == 0 ||
+      operation.category.length == 0 ||
+      operation.vendor.length == 0
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  saveNewTransactionOnDB = (newTransaction) => {
+    if (this.isValidUserInputs(newTransaction)) {
+      this.errorMessage = <div></div>;
+      axios
+        .post("http://localhost:8080/transaction", newTransaction)
+        .then((res) => this.props.updateTransactionsAfterSave(res.data));
+    } else {
+      this.errorMessage = (
+        <div className="error">Please Check Your Inputs.</div>
+      );
+    }
+  };
+  saveDeposit = () => {
+    this.saveNewTransactionOnDB(this.state.operation);
+  };
+
+  saveWithdraw = () => {
+    let newOperation = { ...this.state.operation };
+    newOperation.amount = newOperation.amount * -1;
+    this.saveNewTransactionOnDB(newOperation);
   };
   render() {
     return (
-      <div className="operation-page">
-        <div className="operation-form">
+      <div className="operationPage">
+        <div className="operationForm">
           <div>
             <input
+              value={this.state.operation.amount}
+              name="amount"
               type="number"
               placeholder="amount"
-              onChange={this.updateAmount}
+              onChange={this.handleChange}
             />
           </div>
           <div>
             <input
+              value={this.state.operation.vendor}
+              name="vendor"
               type="text"
               placeholder="vendor"
-              onChange={this.updateVendor}
+              onChange={this.handleChange}
             />
           </div>
           <div>
             <input
+              value={this.state.operation.category}
+              name="category"
               type="text"
               placeholder="category"
-              onChange={this.updateCategory}
+              onChange={this.handleChange}
             />
           </div>
+          {this.errorMessage}
           <span>
             <button onClick={this.saveDeposit}>
-              <Link to="/transactions" className="delete-underline-link">
+              <Link
+                to={
+                  this.isValidUserInputs(this.state.operation)
+                    ? "/transactions"
+                    : "/operations"
+                }
+                className="deleteUnderlineLink"
+              >
                 Deposit
               </Link>
             </button>
           </span>
           <span>
             <button onClick={this.saveWithdraw}>
-              <Link to="/transactions" className="delete-underline-link">
+              <Link
+                to={
+                  this.isValidUserInputs(this.state.operation)
+                    ? "/transactions"
+                    : "/operations"
+                }
+                className="deleteUnderlineLink"
+              >
                 <span>Withdraw</span>
               </Link>
             </button>

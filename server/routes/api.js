@@ -1,8 +1,8 @@
+const { ThumbDownAltTwoTone } = require("@material-ui/icons");
 const express = require("express");
 const router = express.Router();
-// const moment = require('moment')
 
-const Transaction = require("../../models/Transaction");
+const Transaction = require("../models/Transaction");
 router.get("/transactions", function (req, res) {
   Transaction.find({}, function (err, expenses) {
     res.send(expenses);
@@ -10,17 +10,17 @@ router.get("/transactions", function (req, res) {
 });
 router.post("/transaction", function (req, res) {
   const transaction = new Transaction(req.body);
-  transaction.save();
-  res.send("finish");
+  transaction.save(function (err, newTransaction) {
+    res.status(201).send(newTransaction);
+  });
 });
 
 router.delete("/transaction/:id", async function (req, res) {
   console.log(req.params.id);
   await Transaction.deleteOne({ _id: req.params.id });
   Transaction.find({}, function (err, expenses) {
-    console.log(expenses);
+    res.send(expenses);
   });
-  res.send(expenses);
 });
 
 module.exports = router;
