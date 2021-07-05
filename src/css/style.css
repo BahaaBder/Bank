@@ -69,20 +69,3 @@ input {
   text-decoration: none;
   color: black;
 }
-.balanceGreen {
-  color: green;
-}
-.balanceRed {
-  color: Red;
-}
-.balance,
-.balanceGreen,
-.balanceRed {
-  margin-top: 13px;
-  margin-left: 10px;
-  font-size: x-large;
-}
-.transactions {
-  overflow-y: scroll;
-  height: 346px;
-}

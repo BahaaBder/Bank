@@ -1,4 +1,3 @@
-const { ThumbDownAltTwoTone } = require("@material-ui/icons");
 const express = require("express");
 const router = express.Router();
 
@@ -16,7 +15,6 @@ router.post("/transaction", function (req, res) {
 });
 
 router.delete("/transaction/:id", async function (req, res) {
-  console.log(req.params.id);
   await Transaction.deleteOne({ _id: req.params.id });
   Transaction.find({}, function (err, expenses) {
     res.send(expenses);

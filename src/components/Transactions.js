@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Transaction from "./Transaction";
+import "../css/transactions.css";
 const stableBalance = 500;
 export default class Transactions extends Component {
   render() {
